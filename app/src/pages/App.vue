@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      msg: "33336644333344"
+      msg: "333366443333422224"
     };
   }
 };
