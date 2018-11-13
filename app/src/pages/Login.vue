@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+    123
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  data() {
+    return {};
+  }
 };
 </script>
 
 <style lang='less'>
-@import "~@less/index.less";
 </style>
 
