@@ -23,6 +23,7 @@
     "html-withimg-loader": "^0.1.16",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "nodemon": "^1.18.6",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
@@ -35,5 +36,17 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.18.0",
+    "crypto": "^1.0.1",
+    "koa": "^2.6.2",
+    "koa-body": "^2.5.0",
+    "koa-cors": "0.0.16",
+    "koa-route": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
+    "mysql": "^2.15.0",
+    "node-uuid": "^1.4.8",
+    "vuetify": "^1.3.7"
+  }
 }

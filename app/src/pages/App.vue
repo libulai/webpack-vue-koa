@@ -5,12 +5,12 @@
 </template>
 
 <script>
-export default {
-  name: "App"
-};
+  export default {
+    name: "App"
+  };
 </script>
 
 <style lang='less'>
-@import "~@less/index.less";
+  @import "~@assets/less/reset.less";
+  @import "~@assets/less/index.less";
 </style>
-

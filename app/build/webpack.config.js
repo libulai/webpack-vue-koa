@@ -37,6 +37,7 @@ module.exports = {
                 test: /\.css$/, // 转换文件的匹配正则
                 use: ExtractTextWebpackPlugin.extract({
                     fallback: 'style-loader',
+                    // publicPath: '../../',
                     //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                     use: ['css-loader', 'postcss-loader']
                 })
@@ -97,7 +98,9 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@less': path.join(__dirname, '../src/assets/less')
+            '@assets': path.join(__dirname, '../src/assets'),
+            '@dist': path.join(__dirname, '../dist'),
+            vue: 'vue/dist/vue.js'
             // $: './src/jquery.js'
         },
         // 省略后缀

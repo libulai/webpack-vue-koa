@@ -17,8 +17,7 @@ app.use(router.routes(), router.allowedMethods());
 
 //错误处理
 app.on('error',(ctx,err)=>{
-    if(err.status = 404) ctx.body = '404了哎'
-    if(err.status = 500) ctx.body = '500了哎'
+    if(err) console.error(err);
 })
 
 app.listen(3600)
