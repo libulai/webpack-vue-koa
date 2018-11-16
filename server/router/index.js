@@ -1,8 +1,8 @@
 const router = require('koa-router')()
 
-const main = require('./main')
+const sign = require('./sign')
 
-router.use(main.routes(),main.allowedMethods())
+router.use(sign.routes(),sign.allowedMethods())
 
 module.exports = router
 

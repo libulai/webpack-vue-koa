@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode development",
     "dev": "webpack-dev-server --inline --config app/build/webpack.config.js --mode development",
-    "start": "nodemon --inspect server/app.js"
+    "start": "nodemon --inspect server/app.js localhost 3333"
   },
   "author": "",
   "license": "ISC",

@@ -2,32 +2,54 @@
   <div id="login">
     <p class="login-title">ZOO</p>
     <div class="login-container">
-      <v-form>
-        <v-container>
-          <v-layout row wrap>
-
-            <v-flex xs12 sm6>
-              <v-text-field v-model="username" label="First Name" solo></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6>
-              <v-text-field v-model="password" label="Last Name" solo></v-text-field>
-            </v-flex>
-
-          </v-layout>
-        </v-container>
-      </v-form>
+      <v-app>
+        <v-tabs grow color="cyan" dark slider-color="yellow">
+          <v-tab centered @click="tabChange(0)">登录</v-tab>
+          <v-tab centered @click="tabChange(1)">注册</v-tab>
+        </v-tabs>
+        <v-form class="login-form">
+          <v-text-field v-model="formData.username" :rules="nameRules" label="Username" required></v-text-field>
+          <v-text-field v-model="formData.password" :rules="passwordRules" label="Password" required></v-text-field>
+        </v-form>
+        <v-btn v-if="!IsSignIn" class="login-btn" large color="cyan" @click="signUp">登录</v-btn>
+        <v-btn v-else class="login-btn" large color="cyan" @click="signIn">注册</v-btn>
+      </v-app>
     </div>
   </div>
 </template>
 
 <script>
+  import { Sign } from '@/api/fetch';
+
   export default {
     data() {
       return {
-        // username: '',
-        // password: ''
+        formData: {
+          username: '',
+          password: ''
+        },
+        IsSignIn: false,
+        nameRules: [
+          v => !!v || 'Username is required',
+          v => v.length <= 10 || 'Username must be less than 10 characters'
+        ],
+        passwordRules: [
+          v => !!v || 'Password is required'
+        ]
       };
+    },
+    methods: {
+      tabChange(type) {
+        type == 0 ? this.IsSignIn = false : this.IsSignIn = true;
+      },
+      async signIn() {
+        if(this.formData.username == '' || this.formData.password == '') return;
+        await Sign.signIn(this.formData);
+      },
+      async signUp() {
+        if(this.formData.username == '' || this.formData.password == '') return;
+        await Sign.signUp(this.formData);
+      }
     }
   };
 </script>
@@ -42,14 +64,21 @@
     flex-direction: column;
     color: #fff;
     font-size: 30px;
-    background: url('~@dist/images/login_bg.png') no-repeat 50% fixed;
+    background: url('~@dist/images/login_bg.jpg') no-repeat 50% fixed;
     background-size: cover;
-  }
-
-  .login-container {
-    width: 300px;
-    height: 400px;
-    background: #fff;
-
+    overflow: hidden;
+    .login-container {
+      width: 300px;
+      height: 320px;
+      background: #fff;
+      .login-form {
+        margin: 20px;
+      }
+      .login-btn {
+        color: #fff;
+        margin: 20px 20px 0 20px;
+        width: calc(100% - 40px);
+      }
+    }
   }
 </style>

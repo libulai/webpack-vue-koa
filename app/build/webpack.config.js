@@ -45,8 +45,8 @@ module.exports = {
             {
 
                 test: /\.less$/,
-                use: ExtractTextWebpackPlugin.extract({ 
-                    use: ["css-loader", "less-loader"], fallback: 'style-loader' 
+                use: ExtractTextWebpackPlugin.extract({
+                    use: ["css-loader", "less-loader"], fallback: 'style-loader'
                 })
             },
             {
@@ -83,7 +83,7 @@ module.exports = {
             filename: 'index.html',
             chunks: 'index.js',
         }),
-        new CleanWebpackPlugin(['dist']), //删除dist目录
+        // new CleanWebpackPlugin(['dist']), //删除dist目录
         new webpack.HotModuleReplacementPlugin(), //热更新
         new VueLoaderPlugin()
     ],
@@ -94,17 +94,28 @@ module.exports = {
         // overlay: true,
         open: true,
         hot: true,
+        proxy: {
+            "/api": {
+                target: "http://localhost:3789",
+                logLevel: 'debug',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }, //模拟请求
         compress: true // 服务器返回浏览器的时候是否启动gzip压缩
     },
     resolve: {
         alias: {
             '@assets': path.join(__dirname, '../src/assets'),
+            '@': path.join(__dirname, '../src'),
             '@dist': path.join(__dirname, '../dist'),
             vue: 'vue/dist/vue.js'
             // $: './src/jquery.js'
         },
         // 省略后缀
-        // extensions: ['.js', '.json', '.css']
+        extensions: ['.js', '.json', '.css']
     }
 
 

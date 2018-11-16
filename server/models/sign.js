@@ -2,10 +2,9 @@ const db = require('../utils/db')
 const crypto = require('crypto')
 
 module.exports = {
-    async login (data){
-        
+    async signIn (data){
         let rs = await db.query(`select * from tbl_user_basic where username='${data.name}' and password='${data.password}'`)
-        
+        console.log(rs)
         if(rs.length>0){
             return rs[0]
         }else{

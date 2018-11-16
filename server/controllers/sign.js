@@ -1,14 +1,14 @@
 const code = require('../config/code.config')
-const main = require('../models/main')
+const sign = require('../models/sign')
 const crypto = require("crypto");
 
-exports.login = async ctx => {
+exports.signIn = async ctx => {
     const data = ctx.request.body
     let md5 = crypto.createHash("md5");
     data.password = md5.update(data.password).digest("hex");
-    const rs = await main.login(data) 
+    const rs = await sign.signIn(data) 
     // ctx.session = rs
-    // console.log(ctx.session)
+    // console.log(ctx.session)  
 
     if(rs == 'sucessed'){
         ctx.body = {
