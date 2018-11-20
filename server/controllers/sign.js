@@ -6,24 +6,19 @@ exports.signIn = async ctx => {
     const data = ctx.request.body
     let md5 = crypto.createHash("md5");
     data.password = md5.update(data.password).digest("hex");
-    const rs = await sign.signIn(data) 
+    const rs = await sign.signIn(data)
     // ctx.session = rs
     // console.log(ctx.session)  
 
-    if(rs == 'sucessed'){
+    if (rs) {
         ctx.body = {
-            status:0,
-            msg:'注册成功，即将登陆'
+            status: 1,
+            msg: '注册成功，即将登陆'
         }
-    }else if(rs){
+    } else {
         ctx.body = {
-            status:0,
-            msg:'验真成功，即将登陆'
-        }
-    }else{
-        ctx.body = {
-            status:1,
-            msg:'密码错误'
+            status: 0,
+            msg: '该用户名已注册'
         }
     }
 }

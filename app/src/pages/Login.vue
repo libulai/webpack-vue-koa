@@ -20,6 +20,7 @@
 
 <script>
   import { Sign } from '@/api/fetch';
+  // import toast from '@/components/common/Toast.vue';
 
   export default {
     data() {
@@ -29,6 +30,7 @@
           password: ''
         },
         IsSignIn: false,
+
         nameRules: [
           v => !!v || 'Username is required',
           v => v.length <= 10 || 'Username must be less than 10 characters'
@@ -38,16 +40,29 @@
         ]
       };
     },
+    created() {
+
+    },
     methods: {
       tabChange(type) {
         type == 0 ? this.IsSignIn = false : this.IsSignIn = true;
       },
       async signIn() {
-        if(this.formData.username == '' || this.formData.password == '') return;
-        await Sign.signIn(this.formData);
+        if (this.formData.username == '' || this.formData.password == '') return;
+
+        const rs = await Sign.signIn(this.formData);
+
+        const $toast = this.$toast({
+          toastError: rs.data.status == 0 ? true : false,
+          toastTrue: rs.data.status == !0 ? true : false,
+          errorText: rs.data.msg,
+          trueText: rs.data.msg
+        })
+
+        console.log($toast)
       },
       async signUp() {
-        if(this.formData.username == '' || this.formData.password == '') return;
+        if (this.formData.username == '' || this.formData.password == '') return;
         await Sign.signUp(this.formData);
       }
     }
@@ -79,6 +94,12 @@
         margin: 20px 20px 0 20px;
         width: calc(100% - 40px);
       }
+    }
+    .toast {
+      top: -8px;
+      position: absolute;
+      width: 100%;
+      text-align: center;
     }
   }
 </style>

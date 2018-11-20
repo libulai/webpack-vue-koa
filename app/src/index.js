@@ -2,24 +2,22 @@ import Vue from 'vue'
 import App from './pages/App.vue'
 import router from './routers'
 import Vuetify from 'vuetify'
-import "vuetify/dist/vuetify.min.css";
+import componets from '@/config/componets'
+
+import "vuetify/dist/vuetify.min.css"; //vuetify css
+import 'material-design-icons-iconfont/dist/material-design-icons.css' //vuetity icon
 
 Vue.use(Vuetify)
+
+Vue.prototype.$toast = componets.toast; //把toast 绑定在全局
+
 
 // 阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false
 
-// new Vue({
-//     el: "#root",
-//     router,
-//     render: h => h(App)
-// })
-
-
-
 new Vue({
-    el: '#root',
+    el: "#root",
     router,
-    components: { App },
-    template: '<App/>'
+    render: h => h(App)
 })
+

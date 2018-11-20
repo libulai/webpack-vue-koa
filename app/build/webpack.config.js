@@ -60,8 +60,8 @@ module.exports = {
                 }
             },
             {
-                test: /\.(eot|ttf|woff|svg)$/,
-                use: 'file-loader'
+                test: /\.(woff2?|eot|ttf|otf|woff|svg)$/,
+                use: 'url-loader'
             },
             {
                 test: /\.(htm|html)$/,
