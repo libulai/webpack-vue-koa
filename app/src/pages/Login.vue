@@ -52,18 +52,26 @@
 
         const rs = await Sign.signIn(this.formData);
 
-        const $toast = this.$toast({
+        this.$toast({
           toastError: rs.data.status == 0 ? true : false,
           toastTrue: rs.data.status == !0 ? true : false,
           errorText: rs.data.msg,
           trueText: rs.data.msg
         })
-
-        console.log($toast)
       },
       async signUp() {
         if (this.formData.username == '' || this.formData.password == '') return;
-        await Sign.signUp(this.formData);
+
+        const rs = await Sign.signUp(this.formData);
+
+        if (rs.data.status == 1) {
+          this.$router.push('/main');
+        } else {
+          this.$toast({
+            toastError: true,
+            errorText: rs.data.msg
+          })
+        }
       }
     }
   };
