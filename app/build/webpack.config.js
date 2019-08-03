@@ -85,7 +85,11 @@ module.exports = {
         }),
         // new CleanWebpackPlugin(['dist']), //删除dist目录
         new webpack.HotModuleReplacementPlugin(), //热更新
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jquery: "jquery"
+        // })
     ],
     devServer: {
         contentBase: path.join(__dirname, "../dist"), //静态文件根目录
@@ -93,7 +97,7 @@ module.exports = {
         host: 'localhost',
         // overlay: true,
         open: true,
-        hot: true,
+        // hot:true,
         proxy: {
             "/api": {
                 target: "http://localhost:3789",

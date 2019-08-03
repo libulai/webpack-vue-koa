@@ -20,7 +20,7 @@
 
 <script>
   import { Sign } from '@/api/fetch';
-  // import toast from '@/components/common/Toast.vue';
+  import toast from '@/components/common/Toast.vue';
 
   export default {
     data() {

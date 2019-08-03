@@ -9,7 +9,7 @@ const app = new Koa();
 app.use(koaBody())
 
 // 静态资源
-const static = serve(path.join(__dirname,'public'))
+const static = serve(path.join(__dirname, 'public'))
 app.use(static)
 
 //路由
