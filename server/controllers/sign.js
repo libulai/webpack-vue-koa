@@ -6,7 +6,7 @@ exports.signIn = async ctx => {
     const data = ctx.request.body
     const md5 = crypto.createHash("md5")
     data.password = md5.update(data.password).digest("hex")
-    const rs = await sign.signIn(data)
+    const rs = sign.signIn(data)
 
     if (rs) {
         ctx.body = {

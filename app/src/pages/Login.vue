@@ -30,7 +30,6 @@
           password: ''
         },
         IsSignIn: false,
-
         nameRules: [
           v => !!v || 'Username is required',
           v => v.length <= 10 || 'Username must be less than 10 characters'
@@ -53,10 +52,10 @@
         const rs = await Sign.signIn(this.formData);
 
         this.$toast({
-          toastError: rs.data.status == 0 ? true : false,
-          toastTrue: rs.data.status == !0 ? true : false,
-          errorText: rs.data.msg,
-          trueText: rs.data.msg
+          toastError: rs.status == 0 ? true : false,
+          toastTrue: rs.status == !0 ? true : false,
+          errorText: rs.msg,
+          trueText: rs.msg
         })
       },
       async signUp() {
@@ -64,12 +63,12 @@
 
         const rs = await Sign.signUp(this.formData);
 
-        if (rs.data.status == 1) {
+        if (rs.status == 1) {
           this.$router.push('/main');
         } else {
           this.$toast({
             toastError: true,
-            errorText: rs.data.msg
+            errorText: rs.msg
           })
         }
       }

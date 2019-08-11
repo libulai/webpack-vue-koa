@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 class Sign {
 
     //注册
@@ -23,7 +22,29 @@ class Sign {
 
 }
 
+class Fetch {
+    constructor() {
+        // 响应拦截
+        axios.interceptors.response.use(response => {
+            return response.data
+        }, error => {
+            return Promise.resolve(error.response)
+        })
+    }
+
+    async post(obj) {
+        // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        // Object.keys(obj.data).forEach(item => {
+        //     obj.data[item] = encodeURIComponent(encodeURIComponent(obj.data[item]))
+        // })
+        return await axios.post(obj.url, obj.data ? obj.data : {})
+    }
+
+
+}
+
 
 export {
-    Sign
+    Sign,
+    Fetch
 }

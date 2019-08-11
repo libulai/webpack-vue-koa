@@ -2,10 +2,11 @@ const router = require('koa-router')()
 
 const sign = require('./sign')
 
-router.use(sign.routes(),sign.allowedMethods())
+const homePage = require('./homePage')
+
+router
+    .use(sign.routes(), sign.allowedMethods())
+    .use(homePage.routes(), homePage.allowedMethods())
 
 module.exports = router
-
-
-
 

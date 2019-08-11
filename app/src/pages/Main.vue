@@ -5,7 +5,7 @@
       <HeaderToolbar :title="top_title" @leftSideShow="isleftSideShow"></HeaderToolbar>
       <div class="v-container">
         <LeftSide ref="LeftSide"></LeftSide>
-        <ContentBox></ContentBox>
+        <router-view></router-view>
       </div>
     </v-app>
   </div>
@@ -14,7 +14,6 @@
 <script>
   import HeaderToolbar from '@/pages/HeaderToolbar.vue';
   import LeftSide from '@/pages/LeftSide.vue';
-  import ContentBox from '@/pages/ContentBox.vue';
 
   export default {
     data() {
@@ -29,8 +28,7 @@
     },
     components: {
       HeaderToolbar,
-      LeftSide,
-      ContentBox
+      LeftSide
     }
   };
 </script>

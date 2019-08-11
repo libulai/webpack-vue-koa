@@ -5,7 +5,7 @@
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>退出</v-btn>
+        <v-btn flat @click="back">退出</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -24,7 +24,10 @@
     },
     methods: {
       showHideLeftSide() {
-        this.$emit('leftSideShow', $('#leftside').css('display')==='block'? false : true);
+        this.$emit('leftSideShow', document.querySelector('#leftside').style.display === '' ? false : true);
+      },
+      back() {
+        this.$router.push('/')
       }
     }
   };

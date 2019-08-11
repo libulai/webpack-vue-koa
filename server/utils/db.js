@@ -7,7 +7,7 @@ const pool = mysql.createPool(config.mysql)
 
 const dbObj = {
     // 数据库操作query
-    query: (sql, params) => {
+    query(sql, params) {
         return new Promise((resolve, reject) => {
             pool.getConnection((err, conn) => {
                 if (err) reject(err)
@@ -26,7 +26,7 @@ const dbObj = {
     },
 
     // 生成随机uuid
-    uuid: () => {
+    uuid() {
         return uuid.v1()
     }
 }

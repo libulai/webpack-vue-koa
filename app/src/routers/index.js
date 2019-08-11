@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../pages/Login.vue'
 import Main from '../pages/Main.vue'
+import WebSkill from '../pages/WebSkill.vue'
+import HomePage from '../pages/HomePage.vue'
 
 Vue.use(Router)
 
@@ -16,13 +18,18 @@ export default new Router({
             path: '/main',
             name: 'main',
             component: Main,
-            // children: [
-            //     {
-            //         path: '/index',
-            //         name: 'index',
-            //         component: Home
-            //     }
-            // ]
+            children: [
+                // {
+                //     path: '/home',
+                //     name: 'home',
+                //     component: HomePage
+                // },
+                {
+                    path: '/webSkill',
+                    name: 'webSkill',
+                    component: WebSkill
+                }
+            ]
         }
     ]
 })

@@ -2,7 +2,7 @@
   <div id="leftside" v-show="elIsShow">
     <v-navigation-drawer class="" permanent>
       <v-list>
-        <v-list-tile v-for="item in list" :key="item.name" @click="">
+        <v-list-tile v-for="item in list" :key="item.name" @click="goto(item.path)">
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>
@@ -24,18 +24,22 @@
         list: [
           {
             name: '首页',
-            icon: 'home'
+            icon: 'home',
+            path: '/home'
           },
           {
             name: '前端技术',
-            icon: 'assessment'
+            icon: 'assessment',
+            path: '/webSkill'
           }
         ],
         elIsShow: true
       };
     },
     methods: {
-  
+      goto(path) {
+        this.$router.push(path)
+      }
     }
   };
 </script>

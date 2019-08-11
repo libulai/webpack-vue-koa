@@ -1,7 +1,5 @@
 <template>
-  <div id="myChart">
-    
-  </div>
+  <div id="myChart"></div>
 </template>
 
 <script>
@@ -19,7 +17,7 @@
     
     },
     mounted(){
-      // this.drawLine();
+      this.drawLine()
     },
     methods: {
       drawLine(){
