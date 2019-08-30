@@ -25,3 +25,5 @@ new Vue({
     router,
     render: h => h(App)
 })
+
+var a = 1111
