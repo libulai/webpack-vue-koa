@@ -12,7 +12,9 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' //vuetity
 Vue.use(Vuetify)
 
 Vue.prototype.$toast = componets.toast //把toast 绑定在全局
+
 // Vue.prototype.$echarts = echarts
+
 Vue.prototype.$fetch = new Fetch()
 
 // 阻止 vue 在启动时生成生产提示
@@ -23,4 +25,3 @@ new Vue({
     router,
     render: h => h(App)
 })
-
