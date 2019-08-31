@@ -38,6 +38,7 @@
     .v-container{
       display: flex;
       height: 100%;
+      margin-top: 64px;
     }
   }
 </style>

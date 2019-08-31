@@ -52,8 +52,8 @@
         const rs = await Sign.signIn(this.formData);
 
         this.$toast({
-          toastError: rs.status == 0 ? true : false,
-          toastTrue: rs.status == !0 ? true : false,
+          toastError: rs.status == 0,
+          toastTrue: rs.status == !0,
           errorText: rs.msg,
           trueText: rs.msg
         })
@@ -86,7 +86,7 @@
     flex-direction: column;
     color: #fff;
     font-size: 30px;
-    background: url('~@dist/images/login_bg.jpg') no-repeat 50% fixed;
+    // background: url('~@dist/images/login_bg.jpg') no-repeat 50% fixed;
     background-size: cover;
     overflow: hidden;
     .login-container {
