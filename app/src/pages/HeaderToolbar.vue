@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header">
     <v-toolbar color="primary" dark>
       <v-toolbar-side-icon @click="showHideLeftSide"></v-toolbar-side-icon>
       <v-toolbar-title>{{title}}</v-toolbar-title>
@@ -32,5 +32,10 @@
 </script>
 
 <style lang='less' scoped>
-  #main {}
+  .header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
 </style>
