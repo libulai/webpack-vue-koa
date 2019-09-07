@@ -14,7 +14,7 @@ module.exports = {
         return Promise.all(promiseArr).then((rs) => {
             let handleInfo = handleData(rs, keywordArr)
             db.query(`insert into tbl_web_info 
-                    (web_uuid, keyword, create_time) value (?, ?, NOW())`, [db.uuid(), JSON.stringify(handleInfo)])
+                    (web_uuid, keyword, create_time) value (?, ?, CURDATE())`, [db.uuid(), JSON.stringify(handleInfo)])
             return handleInfo
         })
     },
@@ -25,7 +25,12 @@ module.exports = {
             item.keyword = JSON.parse(item.keyword)
         })
         return rs
+    },
+
+    async deleteWebItems(data) {
+        let rs = await db.query(`delete from tbl_web_info where web_uuid = ?`, [data.id])
         
+        return rs
     }
 }
 

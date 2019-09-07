@@ -34,3 +34,20 @@ exports.getWebList = async ctx => {
     }
 }
 
+exports.deleteWebItems = async ctx => {
+    const rs = await homePage.deleteWebItems(ctx.request.body)
+  
+    if (rs) {
+        ctx.body = {
+            status: 1,
+            data: rs,
+            msg: '删除成功'
+        }
+    } else {
+        ctx.body = {
+            status: 0,
+            msg: '删除失败'
+        }
+    }
+}
+

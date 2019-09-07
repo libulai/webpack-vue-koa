@@ -5,6 +5,8 @@ router.post('/v1/getWebInfos', homePage.getWebInfos)
 
 router.post('/v1/getWebList', homePage.getWebList)
 
+router.post('/v1/deleteWebItems', homePage.deleteWebItems)
+
 module.exports = router
 
 

@@ -1,6 +1,5 @@
 <template>
   <div id="login">
-    <p class="login-title">ZOO</p>
     <div class="login-container">
       <v-app>
         <v-tabs grow color="cyan" dark slider-color="yellow">
@@ -44,7 +43,7 @@
     },
     methods: {
       tabChange(type) {
-        type == 0 ? this.IsSignIn = false : this.IsSignIn = true;
+        this.IsSignIn = type != 0
       },
       async signIn() {
         if (this.formData.username == '' || this.formData.password == '') return;

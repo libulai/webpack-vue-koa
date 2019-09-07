@@ -37,14 +37,22 @@ class Fetch {
         // Object.keys(obj.data).forEach(item => {
         //     obj.data[item] = encodeURIComponent(encodeURIComponent(obj.data[item]))
         // })
-        return await axios.post(obj.url, obj.data ? obj.data : {})
+        let rs = await axios.post(obj.url, obj.data ? obj.data : {})
+        // if(obj.onSuccess) obj.onSuccess = function() {
+        //     debugger
+        //     console.log(333)
+        //     obj.onSuccess.apply(this, rs)
+        // }
+        if (obj.onSuccess) obj.onSuccess(rs)
+        else return rs
+        
     }
 
 
 }
 
-
 export {
     Sign,
     Fetch
 }
+
