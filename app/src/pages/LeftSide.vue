@@ -37,7 +37,7 @@
           }
         ],
         elIsShow: true,
-        active: ''
+        active: '前端技术'
       };
     },
     methods: {
@@ -53,6 +53,9 @@
   #leftside {
     width: 220px;
     /* height: calc(100% - 64px); */
+    aside{
+      background: #f5f5f5;
+    }
   }
   .active{
     color: #2196f3!important;
