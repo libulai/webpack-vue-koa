@@ -14,10 +14,16 @@ class Sign {
     //登录
     static async signUp(parmas) {
         try {
-            return await axios.post('/api/signUp', parmas)
+            const rs = await axios.post('/api/signUp', parmas)
+            this.saveJWT(rs.token)
+            return rs
         } catch (error) {
             throw error
         }
+    }
+
+    static saveJWT(t) {
+        localStorage.setItem('z_token', t)
     }
 
 }
@@ -30,6 +36,13 @@ class Fetch {
         }, error => {
             return Promise.resolve(error.response)
         })
+        
+        // 请求拦截
+        axios.interceptors.request.use(config => {
+            const token = localStorage.getItem('z_token')
+            config.headers.common['Authorization'] = 'Bearer ' + token
+            return config
+        })
     }
 
     async post(obj) {
@@ -39,8 +52,6 @@ class Fetch {
         // })
         let rs = await axios.post(obj.url, obj.data ? obj.data : {})
         // if(obj.onSuccess) obj.onSuccess = function() {
-        //     debugger
-        //     console.log(333)
         //     obj.onSuccess.apply(this, rs)
         // }
         if (obj.onSuccess) obj.onSuccess(rs)

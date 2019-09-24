@@ -46,9 +46,9 @@
         this.IsSignIn = type != 0
       },
       async signIn() {
-        if (this.formData.username == '' || this.formData.password == '') return;
+        if (this.formData.username == '' || this.formData.password == '') return
 
-        const rs = await Sign.signIn(this.formData);
+        const rs = await Sign.signIn(this.formData)
 
         this.$toast({
           toastError: rs.status == 0,
@@ -58,12 +58,12 @@
         })
       },
       async signUp() {
-        if (this.formData.username == '' || this.formData.password == '') return;
+        if (this.formData.username == '' || this.formData.password == '') return
 
-        const rs = await Sign.signUp(this.formData);
+        const rs = await Sign.signUp(this.formData)
 
         if (rs.status == 1) {
-          this.$router.push('/main');
+          this.$router.push('/webSkill')
         } else {
           this.$toast({
             toastError: true,
@@ -85,6 +85,7 @@
     flex-direction: column;
     color: #fff;
     font-size: 30px;
+    background-color: #004e58;
     // background: url('~@dist/images/login_bg.jpg') no-repeat 50% fixed;
     background-size: cover;
     overflow: hidden;

@@ -3,7 +3,7 @@
     <div style="margin-bottom: 20px">
       <v-btn color="info" @click="dialog=true">添加数据</v-btn>
       <v-btn color="error">清空全部</v-btn>
-      <v-btn color="success" style="float:right">图表展示</v-btn>
+      <v-btn color="success" style="float:right" v-on:click="goto">图表展示</v-btn>
     </div>
     <v-data-iterator :items="items" :rows-per-page-items="rowsPerPageItems" :pagination.sync="pagination" content-tag="v-layout"
       row wrap>
@@ -16,7 +16,7 @@
             </span>
           </v-card-title>
           <v-divider></v-divider>
-          <v-list dense v-for="(value, key, index) in props.item.keyword">
+          <v-list dense v-for="(value, key) in props.item.keyword" :key="value">
             <v-list-tile>
               <v-list-tile-content>{{ key }}</v-list-tile-content>
               <v-list-tile-content class="align-end">{{ value }}</v-list-tile-content>
@@ -68,6 +68,9 @@
         let news = this.searchData.replace(/\n/g, ',')
         this.getInfos(news)
         this.dialog = false
+      },
+      goto() {
+        this.$router.push('/home')
       },
       async deleteItem(id) {
         let rs = await this.$fetch.post({

@@ -2,43 +2,80 @@
   <div id="main">
     <v-app>
       <!-- 导航 -->
-      <HeaderToolbar :title="top_title" @leftSideShow="isleftSideShow"></HeaderToolbar>
+      <HeaderToolbar
+        :title="top_title"
+        @leftSideShow="isleftSideShow"
+      ></HeaderToolbar>
       <div class="v-container">
-        <LeftSide ref="LeftSide"></LeftSide>
-        <router-view></router-view>
+        <LeftSide
+          ref="LeftSide"
+          :active="active"
+        ></LeftSide>
+        <transition
+          name="fade"
+          mode="out-in"
+        >
+          <keep-alive>
+            <router-view class="rv"></router-view>
+          </keep-alive>
+        </transition>
       </div>
     </v-app>
   </div>
 </template>
 
 <script>
-  import HeaderToolbar from '@/pages/HeaderToolbar.vue';
-  import LeftSide from '@/pages/LeftSide.vue';
+import HeaderToolbar from "@/pages/HeaderToolbar.vue";
+import LeftSide from "@/pages/LeftSide.vue";
 
-  export default {
-    data() {
-      return {
-        top_title:'ZOO'
-      };
-    },
-    methods: {
-      isleftSideShow(type){
-        this.$refs.LeftSide.elIsShow = type;
-      }
-    },
-    components: {
-      HeaderToolbar,
-      LeftSide
+export default {
+  data() {
+    return {
+      top_title: "ZOO",
+      active: "/webSkill"
+    };
+  },
+  methods: {
+    isleftSideShow(type) {
+      this.$refs.LeftSide.elIsShow = type
     }
-  };
+  },
+  watch: {
+    // 检测路由
+    $route(to, from) {
+      this.active = to.path
+    }
+  },
+  created() {
+    this.active = this.$route.path
+  },
+  components: {
+    HeaderToolbar,
+    LeftSide
+  }
+};
 </script>
 
-<style lang='less' scoped>
-  #main {
-    .v-container{
-      display: flex;
-      height: 100%;
-      margin-top: 64px;
-    }
+<style lang='less'>
+#main {
+  .v-container {
+    display: flex;
+    height: 100%;
+    margin-top: 64px;
   }
+}
+
+.rv {
+  padding: 20px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

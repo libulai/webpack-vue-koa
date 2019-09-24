@@ -4,6 +4,7 @@ import Login from '../pages/Login.vue'
 import Main from '../pages/Main.vue'
 import WebSkill from '../pages/WebSkill.vue'
 import HomePage from '../pages/HomePage.vue'
+import Debounce from '../pages/Debounce.vue'
 
 Vue.use(Router)
 
@@ -19,15 +20,20 @@ export default new Router({
             name: 'main',
             component: Main,
             children: [
-                // {
-                //     path: '/home',
-                //     name: 'home',
-                //     component: HomePage
-                // },
+                {
+                    path: '/home',
+                    name: 'home',
+                    component: HomePage
+                },
                 {
                     path: '/webSkill',
                     name: 'webSkill',
                     component: WebSkill
+                },
+                {
+                    path: '/debounce',
+                    name: 'debounce',
+                    component: Debounce
                 }
             ]
         }

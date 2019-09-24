@@ -1,0 +1,5 @@
+1. jwt 或者 session/cookie
+
+    2. router动画效果
+
+3. vuex

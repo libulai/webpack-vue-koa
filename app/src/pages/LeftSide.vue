@@ -6,7 +6,7 @@
           v-for="item in list" 
           :key="item.name" 
           @click="goto(item)" 
-          :class="{'active': item.name === active}">
+          :class="{'active': item.path === active}">
           <v-list-tile-action>
             <v-icon :class="{'active': item.name === active}">{{item.icon}}</v-icon>
           </v-list-tile-action>
@@ -26,27 +26,36 @@
       return {
         list: [
           {
-            name: '首页',
+            name: 'echarts',
             icon: 'home',
             path: '/home'
           },
           {
-            name: '前端技术',
+            name: '爬虫',
             icon: 'assessment',
             path: '/webSkill'
+          },
+          {
+            name: 'MVVM',
+            icon: 'assessment',
+            path: '/MVVM'
+          },
+          {
+            name: '节流防抖',
+            icon: 'event',
+            path: '/debounce'
           }
         ],
-        elIsShow: true,
-        active: '前端技术'
+        elIsShow: true
       };
     },
+    props: ['active'],
     methods: {
       goto(item) {
         this.$router.push(item.path)
-        this.active = item.name
       }
     }
-  };
+  }
 </script>
 
 <style lang='less' scoped>

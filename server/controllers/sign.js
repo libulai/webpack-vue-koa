@@ -29,7 +29,8 @@ exports.signUp = async ctx => {
 
     if (rs) {
         ctx.body = {
-            status: 1
+            status: 1,
+            token: rs
         }
     } else {
         ctx.body = {

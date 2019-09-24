@@ -22,7 +22,7 @@
     },
     methods: {
       showHideLeftSide() {
-        this.$emit('leftSideShow', document.querySelector('#leftside').style.display === '' ? false : true);
+        this.$emit('leftSideShow', document.querySelector('#leftside').style.display !== '')
       },
       back() {
         this.$router.push('/')

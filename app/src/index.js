@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './pages/App.vue'
 import router from './routers'
 import Vuetify from 'vuetify'
-import componets from '@/config/componets'
-// import echarts from 'echarts'
+import componets from '@/utils/componets'
+import echarts from 'echarts'
 import { Fetch } from '@/api/fetch'
 
 import "vuetify/dist/vuetify.min.css" //vuetify css
@@ -13,7 +13,7 @@ Vue.use(Vuetify)
 
 Vue.prototype.$toast = componets.toast //把toast 绑定在全局
 
-// Vue.prototype.$echarts = echarts
+Vue.prototype.$echarts = echarts
 
 Vue.prototype.$fetch = new Fetch()
 
