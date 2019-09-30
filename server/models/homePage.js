@@ -36,6 +36,7 @@ module.exports = {
 
 
 function superagentPromise(key) {
+    // 转义
     key = encodeURIComponent(encodeURIComponent(key))
     return new Promise((resolve, reject) => {
         superagent

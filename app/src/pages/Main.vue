@@ -11,13 +11,12 @@
           ref="LeftSide"
           :active="active"
         ></LeftSide>
+        <!-- mode模式 -->
         <transition
           name="fade"
           mode="out-in"
         >
-          <keep-alive>
-            <router-view class="rv"></router-view>
-          </keep-alive>
+          <router-view class="rv"></router-view>
         </transition>
       </div>
     </v-app>
@@ -37,17 +36,17 @@ export default {
   },
   methods: {
     isleftSideShow(type) {
-      this.$refs.LeftSide.elIsShow = type
+      this.$refs.LeftSide.elIsShow = type;
     }
   },
   watch: {
     // 检测路由
     $route(to, from) {
-      this.active = to.path
+      this.active = to.path;
     }
   },
   created() {
-    this.active = this.$route.path
+    this.active = this.$route.path;
   },
   components: {
     HeaderToolbar,
@@ -67,15 +66,18 @@ export default {
 
 .rv {
   padding: 20px;
+  margin-left: 220px !important;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: all 0.4s;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  transition: all 0.4s;
+  transform: translateX(30px);
 }
 </style>

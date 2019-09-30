@@ -46,7 +46,8 @@ module.exports = {
 
                 test: /\.less$/,
                 use: ExtractTextWebpackPlugin.extract({
-                    use: ["css-loader", "less-loader"], fallback: 'style-loader'
+                    use: ["css-loader", "less-loader"], 
+                    fallback: 'style-loader'
                 })
             },
             {

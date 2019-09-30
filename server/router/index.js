@@ -8,28 +8,31 @@ const jwt = require('jsonwebtoken')
 
 const key_token = 'zoo'
 
+// 验证jwt
 router.post('*', async (ctx, next) => {
-    if (!ctx.path.includes('login')) {
-        let token = ctx.header.authorization  // 获取jwt
-        if (token) {
-            console.log(token.split(' ')[1])
-            jwt.verify(token.split(' ')[1], key_token, (err, payload) => {
-                console.log(payload, err)
+    if (!ctx.path.includes('signUp') && !ctx.path.includes('signIn')) {
+        let token = ctx.header.authorization.split(' ')[1]  // 获取jwt
+        if (token !== 'null') {
+            try {
+                jwt.verify(token, key_token)
+                await next()
+            } catch (error) {
                 ctx.body = {
-                    payload
+                    data: error.message,
+                    code: -1
                 }
                 return
-            })
+            }
         } else {
-            ctx.body = {
+            return ctx.body = {
                 message: 'token 错误',
                 code: -1
             }
         }
+    } else {
+        await next()
     }
-
-    await next()
-});
+})
 
 router
     .use(sign.routes(), sign.allowedMethods())

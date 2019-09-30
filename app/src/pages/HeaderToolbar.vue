@@ -38,4 +38,8 @@
     width: 100%;
     z-index: 1;
   }
+  .primary{
+    background-color: #00a6bb!important;
+    border-color: #00a6bb!important;
+  }
 </style>

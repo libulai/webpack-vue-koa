@@ -63,7 +63,7 @@
         const rs = await Sign.signUp(this.formData)
 
         if (rs.status == 1) {
-          this.$router.push('/webSkill')
+          this.$router.push('/MVVM')
         } else {
           this.$toast({
             toastError: true,
@@ -85,7 +85,7 @@
     flex-direction: column;
     color: #fff;
     font-size: 30px;
-    background-color: #004e58;
+    background-color: rgb(48, 65, 86);
     // background: url('~@dist/images/login_bg.jpg') no-repeat 50% fixed;
     background-size: cover;
     overflow: hidden;
@@ -95,6 +95,7 @@
       background: #fff;
       .login-form {
         margin: 20px;
+        margin-top: 27px;
       }
       .login-btn {
         color: #fff;

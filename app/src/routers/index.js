@@ -5,6 +5,7 @@ import Main from '../pages/Main.vue'
 import WebSkill from '../pages/WebSkill.vue'
 import HomePage from '../pages/HomePage.vue'
 import Debounce from '../pages/Debounce.vue'
+import MVVM from '../pages/MVVM.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
                     path: '/debounce',
                     name: 'debounce',
                     component: Debounce
+                },
+                {
+                    path: '/MVVM',
+                    name: 'MVVM',
+                    component: MVVM
                 }
             ]
         }

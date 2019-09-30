@@ -1,6 +1,55 @@
 import axios from 'axios'
+import vue from '../index'
 
-class Sign {
+class Fetch {
+    constructor() {
+
+        // 响应拦截
+        axios.interceptors.response.use(response => {
+            // jwt 验证失败
+            if (response.data.code === -1) {
+                vue.$toast({
+                    toastError: true,
+                    errorText: 'jwt验证失败或过期，请重新登录',
+                  })
+                vue.$router.push('/')
+            }
+            return response.data
+        }, error => {
+            return Promise.resolve(error.response)
+        })
+
+        
+        // 请求拦截
+        axios.interceptors.request.use(config => {
+            const token = localStorage.getItem('z_token')
+            config.headers.common['Authorization'] = 'Bearer ' + token
+            return config
+        })
+    }
+
+    async post(obj) {
+        // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        // Object.keys(obj.data).forEach(item => {
+        //     obj.data[item] = encodeURIComponent(encodeURIComponent(obj.data[item]))
+        // })
+        let rs = await axios.post(obj.url, obj.data ? obj.data : {})
+        // if(obj.onSuccess) obj.onSuccess = function() {
+        //     obj.onSuccess.apply(this, rs)
+        // }
+        if (obj.onSuccess) obj.onSuccess(rs)
+        else return rs
+        
+    }
+
+
+}
+
+
+class Sign extends Fetch{
+    constructor() {
+        super()
+    }
 
     //注册
     static async signIn(parmas) {
@@ -25,40 +74,6 @@ class Sign {
     static saveJWT(t) {
         localStorage.setItem('z_token', t)
     }
-
-}
-
-class Fetch {
-    constructor() {
-        // 响应拦截
-        axios.interceptors.response.use(response => {
-            return response.data
-        }, error => {
-            return Promise.resolve(error.response)
-        })
-        
-        // 请求拦截
-        axios.interceptors.request.use(config => {
-            const token = localStorage.getItem('z_token')
-            config.headers.common['Authorization'] = 'Bearer ' + token
-            return config
-        })
-    }
-
-    async post(obj) {
-        // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        // Object.keys(obj.data).forEach(item => {
-        //     obj.data[item] = encodeURIComponent(encodeURIComponent(obj.data[item]))
-        // })
-        let rs = await axios.post(obj.url, obj.data ? obj.data : {})
-        // if(obj.onSuccess) obj.onSuccess = function() {
-        //     obj.onSuccess.apply(this, rs)
-        // }
-        if (obj.onSuccess) obj.onSuccess(rs)
-        else return rs
-        
-    }
-
 
 }
 

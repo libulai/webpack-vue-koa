@@ -3,7 +3,7 @@
     <v-navigation-drawer class="" permanent>
       <v-list>
         <v-list-tile 
-          v-for="item in list" 
+          v-for="item in list"
           :key="item.name" 
           @click="goto(item)" 
           :class="{'active': item.path === active}">
@@ -37,7 +37,7 @@
           },
           {
             name: 'MVVM',
-            icon: 'assessment',
+            icon: 'subject',
             path: '/MVVM'
           },
           {
@@ -61,12 +61,23 @@
 <style lang='less' scoped>
   #leftside {
     width: 220px;
+    position: fixed;
+    height: 100%;
     /* height: calc(100% - 64px); */
     aside{
-      background: #f5f5f5;
+      background: rgb(48, 65, 86);
     }
   }
+  .v-list>div{
+    color: rgb(191, 203, 217);
+  }
+  .v-icon{
+    color: rgb(191, 203, 217)!important;
+  }
   .active{
-    color: #2196f3!important;
+    color: #fff!important;
+    .v-icon{
+      color: #fff!important;
+    }
   }
 </style>
