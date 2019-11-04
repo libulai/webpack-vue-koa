@@ -80,4 +80,8 @@ export default {
   transition: all 0.4s;
   transform: translateX(30px);
 }
+
+.container.grid-list-md .layout .flex{
+  padding: 12px!important;
+}
 </style>

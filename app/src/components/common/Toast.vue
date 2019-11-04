@@ -1,5 +1,5 @@
 <template>
-  <div id="toastBox" v-if="show">
+  <div id="toastBox" v-show="show">
     <v-alert :value="true" type="success" class="toast" id="toast-true" v-if="toastTrue" ref="toast">{{ trueText }}</v-alert>
     <v-alert :value="true" type="error" class="toast" id="toast-error" v-if="toastError" ref="toast">{{ errorText }}</v-alert>
   </div>

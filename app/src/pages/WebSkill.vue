@@ -16,7 +16,7 @@
             </span>
           </v-card-title>
           <v-divider></v-divider>
-          <v-list dense v-for="(value, key) in props.item.keyword" :key="value">
+          <v-list dense v-for="(value, key) in props.item.keyword" :key="key">
             <v-list-tile>
               <v-list-tile-content>{{ key }}</v-list-tile-content>
               <v-list-tile-content class="align-end">{{ value }}</v-list-tile-content>

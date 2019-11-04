@@ -3,8 +3,8 @@
     <v-navigation-drawer class="" permanent>
       <v-list>
         <v-list-tile 
-          v-for="item in list"
-          :key="item.name" 
+          v-for="(item, index) in list"
+          :key="index" 
           @click="goto(item)" 
           :class="{'active': item.path === active}">
           <v-list-tile-action>

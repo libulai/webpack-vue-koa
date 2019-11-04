@@ -1,23 +1,28 @@
 <template>
   <div class="d-wrap">
-    MVVM
+    <div>MVVM</div>
+    <div>
+      
+    </div>
   </div>
 </template>
 
 <script>
-import utils from '../utils/comUtils'
+import utils from "../utils/comUtils";
+
+window.pobj = {
+  name: 123
+}
 
 export default {
   data() {
-    return {
-   
-    };
+    return {};
   },
-  methods: {
-  
-  },
+  computed: {},
+  methods: {},
   async created() {
-    console.log(this.$store.state)
+    // console.log(this.$store.state)
+    // console.log(this.$store.getters.doList)
   }
 };
 </script>
@@ -25,6 +30,5 @@ export default {
 <style lang='less' scoped>
 .d-wrap {
   padding: 50px;
-  
 }
 </style>

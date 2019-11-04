@@ -2,11 +2,11 @@
 
     ## vue vuex vue-router 全家桶
 
+    ## webpack
+
     ## axios 
 
     ## less 
-
-    ## webpack 多入口 登录页和主页面
 
     ## 登录 / 注册
 
@@ -26,4 +26,4 @@
 
     ## 爬虫
 
-    ## 数据库封装操作
+    ## 数据库封装操作 mysql

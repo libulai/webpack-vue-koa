@@ -23,16 +23,13 @@ class Fetch {
         // 请求拦截
         axios.interceptors.request.use(config => {
             const token = localStorage.getItem('z_token')
+            // const token = vue.$store.state.z_token
             config.headers.common['Authorization'] = 'Bearer ' + token
             return config
         })
     }
 
     async post(obj) {
-        // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        // Object.keys(obj.data).forEach(item => {
-        //     obj.data[item] = encodeURIComponent(encodeURIComponent(obj.data[item]))
-        // })
         let rs = await axios.post(obj.url, obj.data ? obj.data : {})
         // if(obj.onSuccess) obj.onSuccess = function() {
         //     obj.onSuccess.apply(this, rs)
@@ -46,7 +43,7 @@ class Fetch {
 }
 
 
-class Sign extends Fetch{
+class Sign extends Fetch {
     constructor() {
         super()
     }
@@ -73,6 +70,7 @@ class Sign extends Fetch{
 
     static saveJWT(t) {
         localStorage.setItem('z_token', t)
+        // vue.$store.commit('SAVE_JWT', t)
     }
 
 }
