@@ -3,8 +3,10 @@ const serve = require('koa-static')
 const koaBody = require('koa-body')
 const path = require('path')
 const router = require('./router/index')
+const guangfa = require('./models/guangfa')
 const koajwt = require('koa-jwt')
 const key_token = 'zoo'
+
 
 const app = new Koa();
 
@@ -27,22 +29,22 @@ app.use(async (ctx, next) => {
 })
 
 // 拦截器
-// app.use(async (ctx, next) => {
-//     return next().catch((err) => {
-//         console.log(3333)
-//         if (err.status === 401) {
-//             ctx.status = 401
-//             ctx.body = 'Protected resource, use Authorization header to get access\n'
-//         } else {
-//             throw err
-//         }
-//     })
-// })
+app.use(async (ctx, next) => {
+    return next().catch((err) => {
+        console.log(3333)
+        if (err.status === 401) {
+            ctx.status = 401
+            ctx.body = 'Protected resource, use Authorization header to get access\n'
+        } else {
+            throw err
+        }
+    })
+})
 
 // jwt 鉴权
-// app.use(koajwt({ secret: key_token, passthrough:true }).unless({
-//     path: [/^\/login/]
-// }))
+app.use(koajwt({ secret: key_token, passthrough: true }).unless({
+    path: [/^\/login/]
+}))
 
 // 路由
 app.use(router.routes(), router.allowedMethods())
@@ -54,5 +56,13 @@ app.on('error', (ctx, err) => {
 })
 
 app.listen(3789)
+
+
+
+
+// 广发签账额通知
+setInterval(async function () {
+    guangfa.getInfo()
+}, 60000)
 
 
