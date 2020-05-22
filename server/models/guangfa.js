@@ -10,12 +10,24 @@ module.exports.getInfo = async function () {
         .end((err, rs) => {
             let $ = cheerio.load(rs.text)
             let num = $('.num').text();
-            if (n !== num) {
+            let icon = $('.icon-sold-out').length
+            // console.log(icon)
+            // if (icon && icon == 1) {
+            //     console.log('无货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
+            //     n = num
+            // } else {
+            //     n = num
+            //     console.log('有货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
+            //     sendMail()
+            // }
+            if (n < num && n) {
                 n = num
-                console.log('有货')
-                sendMail()
+                console.log('有货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
+                // console.log($('.icon-sold-out1'))
+                // sendMail()
             } else {
-                console.log('无货')
+                // console.log($('.icon-sold-out1'))
+                console.log('无货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
                 n = num
             }
         })

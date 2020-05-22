@@ -21,7 +21,7 @@ let utils = {
      * @param {Number} delay 
      */
     throttle: function (fn, delay) {
-        let now = +new Date()
+        let now = + new Date()
         if (last && now - last < delay) {
             clearTimeout(deferTimer)
             deferTimer = setTimeout(function () {
