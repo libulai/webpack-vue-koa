@@ -72,4 +72,3 @@ http://www.imooc.com/learn/888
 
 # typeof vs instanceof
 
-# 
