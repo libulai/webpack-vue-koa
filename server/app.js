@@ -31,7 +31,6 @@ app.use(async (ctx, next) => {
 // 拦截器
 app.use(async (ctx, next) => {
     return next().catch((err) => {
-        console.log(3333)
         if (err.status === 401) {
             ctx.status = 401
             ctx.body = 'Protected resource, use Authorization header to get access\n'
@@ -61,8 +60,8 @@ app.listen(3789)
 
 
 // 广发签账额通知
-setInterval(async function () {
-    // guangfa.getInfo()
-}, 10000)
+// setInterval(async function () {
+//     guangfa.getInfo()
+// }, 10000)
 
 
