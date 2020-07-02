@@ -14,3 +14,5 @@ EventBus
 # v-slot
 
 # Object.defineProperty / proxy
+
+# vue如何实现自定义指令呢
