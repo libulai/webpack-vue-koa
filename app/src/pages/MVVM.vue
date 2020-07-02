@@ -1,30 +1,46 @@
 <template>
   <div class="d-wrap">
-    <div>MVVM</div>
-    <div>
-      
-    </div>
+    <div>{{mvvm}}</div>
+    <child @hook:updated="dataChanged"></child>
   </div>
 </template>
 
 <script>
-import utils from "../utils/comUtils";
-
-window.pobj = {
-  name: 123
-}
+import child from './MVVMchild.vue';
 
 export default {
+  components:{child},
   data() {
-    return {};
+    return {
+      mvvm: 'mvvm'
+    };
   },
   computed: {},
-  methods: {},
+  methods: {
+    dataChanged() {
+      console.log('updated')
+    }
+  },
   async created() {
-    // console.log(this.$store.state)
-    // console.log(this.$store.getters.doList)
+    /**
+     * 生命周期hook
+    */
+
+    // this.$on('hook:updated', ()=>{
+    //   console.log(3333)
+    // })
+
+    this.$on('hook:beforeUpdate', ()=>{
+      console.log('beforeUpdate')
+    })
+
+    setTimeout(()=> {
+      this.mvvm = 'parent'
+    },1000)
   }
 };
+
+
 </script>
 
 <style lang='less' scoped>
