@@ -62,7 +62,7 @@ app.listen(3789)
 
 // 广发签账额通知
 setInterval(async function () {
-    guangfa.getInfo()
+    // guangfa.getInfo()
 }, 10000)
 
 

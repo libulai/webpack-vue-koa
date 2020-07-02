@@ -11,7 +11,7 @@ module.exports.getInfo = async function () {
             let $ = cheerio.load(rs.text)
             let num = $('.num').text();
             let icon = $('.icon-sold-out').length
-            // console.log(icon)
+          
             // if (icon && icon == 1) {
             //     console.log('无货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
             //     n = num
@@ -20,14 +20,15 @@ module.exports.getInfo = async function () {
             //     console.log('有货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
             //     sendMail()
             // }
-            if (n < num && n) {
+            // if (n < num && n) {
+            if(icon != 1 && (n < num)) {
                 n = num
-                console.log('有货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
+                console.log(icon, '有货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
                 // console.log($('.icon-sold-out1'))
-                // sendMail()
+                sendMail()
             } else {
                 // console.log($('.icon-sold-out1'))
-                console.log('无货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
+                console.log(n, icon, '无货', ` 已售:${num}`, ` 时间：${new Date().toLocaleTimeString()}`)
                 n = num
             }
         })
@@ -41,7 +42,7 @@ function sendMail() {
         secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
         auth: {
             user: '617069197@qq.com',
-            pass: 'tjjdefulajvabdad'
+            pass: 'neuysfqdqkccbfca'
         },
     });
 
