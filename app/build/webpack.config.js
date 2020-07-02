@@ -6,19 +6,27 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+console.log('entry: ' + path.join(__dirname, '../src/index.js'))
+console.log('output: ' + path.join(__dirname, '../dist'))
+console.log('path.resolve: ' + path.resolve())
+console.log('__dirname: ' + __dirname)
+
 module.exports = {
+    // __dirname 指向当前build目录（绝对路径）
     entry: path.join(__dirname, '../src/index.js'), //入口文件，src下的index.js
     output: {
-        path: path.join(__dirname, 'app/dist'), // 出口目录，dist文件
-        filename: '[name].js', //这里name就是打包出来的文件名，因为是单入口，就是main，多入口下回分解
+        path: path.join(__dirname, '../dist'), // 出口目录，dist文件
+        filename: '[name]_[hash].js', //这里name就是打包出来的文件名，因为是单入口，就是main
         publicPath: '/'
     },
-    // devtool:"eval-source-map",
+    devtool:"eval-source-map", //映射
     module: {
         rules: [
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                include: path.join(__dirname, 'src'), //限制范围，提高打包速度
+                exclude: /node_modules/, // 排除
                 query: {
                     presets: ['es2015'] // env转换es6 stage-0转es7 react转react
                 }
@@ -46,7 +54,7 @@ module.exports = {
 
                 test: /\.less$/,
                 use: ExtractTextWebpackPlugin.extract({
-                    use: ["css-loader", "less-loader"], 
+                    use: ["style-loader", "css-loader", "less-loader"], //从前往后执行
                     fallback: 'style-loader'
                 })
             },
@@ -55,8 +63,9 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
+                        name: '[name]_[hash].[ext]',
                         outputPath: 'images/', // 图片输出的路径
-                        limit: 5 * 1024
+                        limit: 5 * 1024 // 小于这个值的时候把图片转成base64
                     }
                 }
             },
@@ -73,18 +82,23 @@ module.exports = {
 
     plugins: [
         new ExtractTextWebpackPlugin({
-            filename: 'less/[name].[hash].css' //放到dist/css/下
+            filename: '[name]_[hash].css' //放到dist下
         }),
-        new UglifyjsWebpackPlugin(),
+        // new UglifyjsWebpackPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
+        // 在dist下生成html文件，html原型为template
         new HtmlWebpackPlugin({
             template: 'app/index.html',
             filename: 'index.html',
             chunks: 'index.js',
         }),
-        // new CleanWebpackPlugin(['dist']), //删除dist目录
+        //删除dist目录
+        new CleanWebpackPlugin(['dist'],{
+            root: path.join(__dirname, '../')
+        }), 
+        new webpack.ProgressPlugin(), // 打包进度
         new webpack.HotModuleReplacementPlugin(), //热更新
         new VueLoaderPlugin(),
         // new webpack.ProvidePlugin({
@@ -98,7 +112,8 @@ module.exports = {
         host: 'localhost',
         // overlay: true,
         open: true,
-        // hot:true,
+        hot: true,
+        // hotOnly: false,
         proxy: {
             "/api": {
                 target: "http://localhost:3789",
@@ -125,8 +140,3 @@ module.exports = {
 
 
 }
-
-
-
-
-
