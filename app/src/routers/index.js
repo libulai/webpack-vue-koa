@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../pages/Login.vue'
+// const Login = () => import('../pages/Login.vue')
 import Main from '../pages/Main.vue'
 import WebSkill from '../pages/WebSkill.vue'
 import HomePage from '../pages/HomePage.vue'
