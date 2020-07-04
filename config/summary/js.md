@@ -445,17 +445,21 @@ function promise2(fn) {
     _this.stats = 'pendding';
 
     function solve(val) {
-        if (_this.stats === 'pendding') {
-            _this.stats = 'resolved';
-            _this.val = val;
-        }
+        setTimeout(function(){
+            if (_this.stats === 'pendding') {
+                _this.stats = 'resolved';
+                _this.val = val;
+            }
+        })
     }
 
     function reject(reason) {
-        if (_this.stats === 'pendding') {
-            _this.stats = 'rejected';
-            _this.reason = reason;
-        }
+        setTimeout(function(){
+            if (_this.stats === 'pendding') {
+                _this.stats = 'rejected';
+                _this.reason = reason;
+            }
+        })
     }
     try {
         fn.call(this, solve, reject);
