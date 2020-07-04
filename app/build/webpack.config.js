@@ -6,12 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-console.log('entry: ' + path.join(__dirname, '../src/index.js'))
-console.log('output: ' + path.join(__dirname, '../dist'))
-console.log('path.resolve: ' + path.resolve())
-console.log('__dirname: ' + __dirname)
-
-module.exports = {
+const config = {
     // __dirname 指向当前build目录（绝对路径）
     entry: path.join(__dirname, '../src/index.js'), //入口文件，src下的index.js
     output: {
@@ -19,7 +14,8 @@ module.exports = {
         filename: '[name]_[hash].js', //这里name就是打包出来的文件名，因为是单入口，就是main
         publicPath: '/'
     },
-    devtool:"eval-source-map", //映射
+    //开发环境推荐：cheap-module-eval-source-map     生产环境推荐：cheap-module-source-map
+    devtool:"cheap-module-eval-source-map", 
     module: {
         rules: [
             {
@@ -97,7 +93,7 @@ module.exports = {
         //删除dist目录
         new CleanWebpackPlugin(['dist'],{
             root: path.join(__dirname, '../')
-        }), 
+        }),
         new webpack.ProgressPlugin(), // 打包进度
         new webpack.HotModuleReplacementPlugin(), //热更新
         new VueLoaderPlugin(),
@@ -138,5 +134,12 @@ module.exports = {
         extensions: ['.js', '.json', '.css']
     }
 
-
 }
+
+console.log('entry: ' + config.entry)
+console.log('output: ' + path.join(__dirname, '../dist'))
+console.log('path.resolve: ' + path.resolve())
+console.log('__dirname: ' + __dirname)
+
+module.exports = config;
+
