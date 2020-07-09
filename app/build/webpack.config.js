@@ -8,14 +8,23 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = {
     // __dirname 指向当前build目录（绝对路径）
-    entry: path.join(__dirname, '../src/index.js'), //入口文件，src下的index.js
+    entry: {
+        index: path.join(__dirname, '../src/index.js'),
+        // test: path.join(__dirname, '../src/test.js')
+    }, //入口文件，src下的index.js
     output: {
         path: path.join(__dirname, '../dist'), // 出口目录，dist文件
         filename: '[name]_[hash].js', //这里name就是打包出来的文件名，因为是单入口，就是main
         publicPath: '/'
     },
+    // 代码分离
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        }
+    },
     //开发环境推荐：cheap-module-eval-source-map     生产环境推荐：cheap-module-source-map
-    devtool:"cheap-module-eval-source-map", 
+    devtool: "cheap-module-eval-source-map",
     module: {
         rules: [
             {
@@ -91,7 +100,7 @@ const config = {
             chunks: 'index.js',
         }),
         //删除dist目录
-        new CleanWebpackPlugin(['dist'],{
+        new CleanWebpackPlugin(['dist'], {
             root: path.join(__dirname, '../')
         }),
         new webpack.ProgressPlugin(), // 打包进度
@@ -135,6 +144,13 @@ const config = {
     }
 
 }
+
+// 构建结果输出分析
+// if (config.build.bundleAnalyzerReport) { 
+//     varBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; 
+//     webpackConfig.plugins.push(newBundleAnalyzerPlugin()); 
+// }
+
 
 console.log('entry: ' + config.entry)
 console.log('output: ' + path.join(__dirname, '../dist'))
