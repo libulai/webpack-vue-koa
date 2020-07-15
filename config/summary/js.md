@@ -103,6 +103,10 @@ setTimeout(()=>{
     SQL注入
     中间人攻击（DNS 欺骗、会话劫持）
 防御措施
+    xss 使用转义字符过滤html标签
+    csrf token验证鉴权
+    sql注入 过滤sql代码
+    
     https://juejin.im/post/5ec8e8c4f265da76b828b151#heading-18 
 
 
@@ -217,7 +221,7 @@ function create(Con, ...args){
     // 创建空对象
     let obj = {};
     // 设置空对象的原型(链接对象的原型)
-    obj._proto_ = Con.prototype;
+    obj.__proto__ = Con.prototype;
     // 绑定 this 并执行构造函数(为对象设置属性)
     let result = Con.apply(obj,args)
     // 如果 result 没有其他选择的对象，就返回 obj 对象
@@ -255,7 +259,7 @@ var b = new c()
 
 3.c.prototype.constructor  === c (c.prototype指向一个对象)
 
-4.c.prototype === b.__proto__ ，每个对象都有一个__proto__属性，指向创建该对象的函数的prototype。
+4.b.__proto__ === c.prototype，每个对象都有一个__proto__属性，指向创建该对象的函数的prototype。
 
 5.c.prototype.__proto__ === Object.prototype (c.prototype本质上是被Object创建的)
 
