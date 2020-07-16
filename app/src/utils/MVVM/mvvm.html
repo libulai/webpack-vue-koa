@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./MVVM.js"></script>
+    <script src="./Observer.js"></script>
+    <script src="./Compile.js"></script>
+    <script src="./Watcher.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <input type="text" v-model="age">
+        <p>{{age}}</p> 
+        <p v-on:click="click">{{text}}</p>
+        <p>{{text2}}</p>
+    </div>
+
+    <script>
+
+        var obj = this.obj = {
+            data: {
+                name: 'zoo',
+                age: 34
+            },
+            computed: {
+                text() {
+                    return 'text'
+                },
+                text2: {
+                    get() {
+                        return 'text2'
+                    },
+                    set() {}
+                }
+            },
+            methods: {
+                click() {
+                    console.log(this)
+                    // alert(333)
+                }
+            },
+            el: document.querySelector('div')
+        }
+
+        new MVVM(obj)
+
+        // 单列模式
+        var single = function () {
+            var flag
+            return function () {
+                console.log(flag)
+                if (!flag) {
+                    flag = 111
+                    console.log('this is single')
+                } else {
+                    console.log('single is only one')
+                }
+            }
+        }()
+
+        single()
+        single()
+
+        // 工厂模式
+
+        // 订阅发布（观察）
+
+    </script>
+
+</body>
+
+</html>
