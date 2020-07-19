@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 1080px;
+            background-color: goldenrod;
+            font-size: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div>等比缩放</div>
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(function () {
+        var resizePage = function () {
+            var margin,
+                bodyH = 1080,
+                bodyW = 2400,
+                targetScale = bodyW / bodyH,
+                clientH = $(window).height(),
+                clientW = $(window).width(),
+                scale = clientW / clientH,
+                cssOptions = { width: 2400, height: 1080 };
+
+            $('body').removeAttr('style');
+
+            if (scale > targetScale) {
+                var hi = clientH / bodyH;
+
+                Object.assign(cssOptions, {
+                    transform: 'scale(' + hi + ')',
+                    transformOrigin: 'left top 0',
+                    marginLeft: (parseFloat(document.documentElement.clientWidth) - bodyW * hi) / 2
+                })
+            } else {
+                var wi = clientW / bodyW;
+
+                Object.assign(cssOptions, {
+                    transform: 'scale(' + wi + ')',
+                    transformOrigin: 'left top 0',
+                    position: 'absolute',
+                    top: '50%',
+                    marginTop: - parseFloat(bodyH) * wi / 2
+                })
+            }
+
+            $('body').css(cssOptions);
+        };
+        resizePage();
+
+        $(window).resize(resizePage);
+    });
+</script>
+
+</html>

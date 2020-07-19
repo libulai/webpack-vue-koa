@@ -30,7 +30,7 @@ js 实现 jq 方法
 # 设计模式
 
 # 数据存储
-堆 
+堆
 栈
 1.Undefined、Null、Boolean、String、Number、Symbol都是直接按值直接存在栈中（基本类型）
 2.Object，Array，Function这样的数据存在堆内存中，但是数据指针是存放在栈内（引用类型）
@@ -71,6 +71,8 @@ new Promise(function(resolve,reject){
     console.log(val);
 })
 console.log(4);
+
+// 2 4 3 1
 
 2.
 Promise.resolve().then(()=>{

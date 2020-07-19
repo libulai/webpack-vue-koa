@@ -11,6 +11,7 @@
 
 
 export default {
+  name: 'child',
   data() {
     return {
       child: 'child'
