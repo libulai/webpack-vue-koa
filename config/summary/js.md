@@ -25,7 +25,7 @@ js 实现 jq 方法
 ## 判断是不是数组
 1.[] instanceof Array
 2.Array.isArray([])
-3.Object.prototype.toString.apply([])
+3.Object.prototype.toString.call([])
 
 # 设计模式
 
@@ -110,30 +110,11 @@ setTimeout(()=>{
     https://juejin.im/post/5ec8e8c4f265da76b828b151#heading-18 
 
 
-# 二叉树 
-http://www.imooc.com/learn/888
-
-
 # typeof vs instanceof
 1.基础类型 和 引用类型
 2.typeof 只能判断 String Number Function Object等
 3.[] instanceof Array === true （instanceof 只能判断出是不是数组，对象无法判断）
 4.Object.prototype.toString.call([]) 可以判断是数组还是对象
-
-# 冒泡排序
-function BubbleSort(arr) {
-    let length = arr.length;
-    for (let i = 0; i < length; i ++) {
-        for (let j = 1; j < length - i; j ++) {
-            if (arr[j] < arr[j-1]) {
-                const temp = arr[j-1];
-                arr[j-1] = arr[j];
-                arr[j] = temp;
-            }
-        }
-    }
-    return arr;
-}
 
 # this
 
