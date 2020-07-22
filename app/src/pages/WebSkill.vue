@@ -50,7 +50,7 @@
         },
         items: [],
         dialog: false,
-        searchData: 'vue\nreact\nangular\njquery\nnode\n微信小程序\nkoa\nexpress\nreact native\nflutter\nweex'
+        searchData: 'vue\nreact\nangular\njquery\nnode\n微信小程序\nkoa\nexpress\nreact native\nflutter\nweex\nelectron\nssr'
       }
     },
     computed: {

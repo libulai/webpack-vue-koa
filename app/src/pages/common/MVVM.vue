@@ -1,17 +1,18 @@
 <template>
   <div class="d-wrap">
     <div>{{mvvm}}</div>
+    <!-- hook生命周期 -->
     <child @hook:updated="dataChanged"></child>
-    <div class="clip" @click="clip">复制代码</div>
+    <!-- 拷贝文字方法 -->
+    <div class="clip" @click="clip">拷贝文字</div>
+
   </div>
 </template>
 
 <script>
-import child from "./MVVMchild.vue";
 import clipboard from "clipboard";
 
 export default {
-  components: { child },
   data() {
     return {
       mvvm: "mvvm"

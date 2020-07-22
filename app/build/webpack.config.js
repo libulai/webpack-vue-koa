@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+const isDev = process.argv[process.argv.length - 1].includes('development'); //是否开发环境
+
 const config = {
     // __dirname 指向当前build目录（绝对路径）
     entry: {
@@ -15,7 +17,7 @@ const config = {
     output: {
         path: path.join(__dirname, '../dist'), // 出口目录，dist文件
         filename: '[name]_[hash].js', //这里name就是打包出来的文件名，因为是单入口，就是main
-        publicPath: '/'
+        publicPath: isDev ? '/' : './' //文件的引用路径 如 '/xx.js'
     },
     // 代码分离
     optimization: {

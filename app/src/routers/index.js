@@ -6,7 +6,7 @@ import Main from '../pages/Main.vue'
 import WebSkill from '../pages/WebSkill.vue'
 import HomePage from '../pages/HomePage.vue'
 import Debounce from '../pages/Debounce.vue'
-import MVVM from '../pages/MVVM.vue'
+import MVVM from '../pages/common/MVVM.vue'
 
 Vue.use(Router)
 
@@ -40,9 +40,21 @@ export default new Router({
                 {
                     path: '/MVVM',
                     name: 'MVVM',
-                    component: MVVM
+                    component: MVVM,
+                    // children: [
+                    //     {
+                    //         path: '/MVVM/',
+                    //         name: 'MVVM',
+                    //         component: MVVM,
+                    //     }
+                    // ]
                 }
             ]
+        },
+        {
+            path: '*', // 404
+            name: '404',
+            component: Login,
         }
     ]
 })

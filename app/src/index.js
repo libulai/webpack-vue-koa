@@ -4,15 +4,17 @@ import router from './routers'
 import Vuetify from 'vuetify'
 import componets from '@/utils/componets'
 import echarts from 'echarts'
-// import store from './store'
+import initComponents from '@/components/global'
 import { Fetch } from '@/api/fetch'
+// import store from './store'
 
 import "vuetify/dist/vuetify.min.css" //vuetify css
 import 'material-design-icons-iconfont/dist/material-design-icons.css' //vuetity icon
 
 Vue.use(Vuetify)
 
-//把toast 绑定在全局
+initComponents(); // 全局注册组件
+
 Vue.prototype.$toast = componets.toast
 
 Vue.prototype.$echarts = echarts
@@ -29,4 +31,11 @@ export default new Vue({
     router,
     // store,
     render: h => h(App)
+})
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+    // ...
+    next()
+    console.log(to, from)
 })

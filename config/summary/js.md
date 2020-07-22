@@ -30,7 +30,7 @@ js 实现 jq 方法
 # 设计模式
 
 # 数据存储
-堆 
+堆
 栈
 1.Undefined、Null、Boolean、String、Number、Symbol都是直接按值直接存在栈中（基本类型）
 2.Object，Array，Function这样的数据存在堆内存中，但是数据指针是存放在栈内（引用类型）
@@ -58,7 +58,7 @@ js 实现 jq 方法
 微任务：process.nextTick、new Promise().then(回调）、MutationObserver
 宏任务：setTimeout、setInterval、 setImmediate、script（整体代码）、 I/O 操作、UI 渲染等
 
-先同步再异步，在此基础上先宏任务再微任务
+先同步再异步，在此基础上先微任务再宏任务
 
 1.
 setTimeout(function () {
@@ -71,6 +71,8 @@ new Promise(function(resolve,reject){
     console.log(val);
 })
 console.log(4);
+
+// 2 4 3 1
 
 2.
 Promise.resolve().then(()=>{
@@ -87,13 +89,13 @@ setTimeout(()=>{
 },0)
 
 解答
-一开始执行栈的同步任务（这属于宏任务）执行完毕，会去查看是否有微任务队列，上题中存在(有且只有一个)，然后执行微任务队列中的所有任务输出 Promise1，同时会生成一个宏任务 setTimeout2
+<!-- 一开始执行栈的同步任务（这属于宏任务）执行完毕，会去查看是否有微任务队列，上题中存在(有且只有一个)，然后执行微任务队列中的所有任务输出 Promise1，同时会生成一个宏任务 setTimeout2
 然后去查看宏任务队列，宏任务 setTimeout1 在 setTimeout2 之前，先执行宏任务 setTimeout1，输出 setTimeout1
 在执行宏任务 setTimeout1 时会生成微任务 Promise2 ，放入微任务队列中，接着先去清空微任务队列中的所有任务，输出 Promise2
 清空完微任务队列中的所有任务后，就又会去宏任务队列取一个，这回执行的是 setTimeout2
 
 总结
-当某个宏任务执行完后,会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务，如果没有，会读取宏任务队列中排在最前的任务，执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。
+当某个宏任务执行完后,会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务，如果没有，会读取宏任务队列中排在最前的任务，执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。 -->
 
 
 # 浏览器安全
