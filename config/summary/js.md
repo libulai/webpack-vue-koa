@@ -234,7 +234,7 @@ new 和 字面量创建的对象的原型指向 Object.prototype，会继承 Obj
 a是对象，c是函数 b是c的实例 
 var a = {}
 var c = new Function()
-var b = new c()
+var b = new c() 
 
 1.__proto__隐式原型, prototype显示原型
 
@@ -265,7 +265,9 @@ var b = new c()
 3.执行上下文是调用函数时产生的；而作用域是在函数创建时就产生的，同一个作用域下可能同时存在不同的执行上下文
 
 ## 创建上下文环境 -> 执行上下文环境
+
 1.创建上下文环境（定义变量，但是不赋值，只有代码运行时才会变量赋值）
+
 2.函数执行获取变量要去创建这个函数的作用域取值，而不是“父作用域”
 
 在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了。因为this的取值是执行上下文环境的一部分，每次调用函数，都会产生一个新的执行上下文环境
@@ -299,8 +301,24 @@ function debounce(fn, delay) {
 
 # 深拷贝
 
+## JSON.parse(JSON.stringify())
+
+## 
+function deepClone(target) {
+    if (typeof target === 'object') {
+        let copy = Array.isArray(target) ? [] : {}
+        for (let i in target) {
+            copy[i] = deepClone(target[i])
+        }
+        return copy
+    } else {
+        return target;
+    }
+}
+
 # 手写 bind
 https://www.cnblogs.com/goloving/p/9380076.html（实现原理）
+
 Function.prototype.bind2 = function (ctx) {
     if (typeof this !== 'function') {
         throw 'not a function'
