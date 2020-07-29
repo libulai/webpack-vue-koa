@@ -28,6 +28,14 @@ js 实现 jq 方法
 3.Object.prototype.toString.apply([])
 
 # 设计模式
+## 观察者模式
+https://www.cnblogs.com/leaf930814/p/9014200.html
+
+## 发布订阅模式
+
+## 工厂模式
+
+## 单例模式
 
 # 数据存储
 堆
@@ -293,6 +301,17 @@ var b = new c()
 
 闭包形成的原因是调用一个函数，如果内部返回值如果为函数时，内部函数会创建一个私有的作用域，该内部函数调用的变量可能存在于创建该函数的作用域中获取，所以就产生了闭包，上下文环境没有被销毁
 
+好处
+1.读取函数内的变量（使该变量在内部函数return出去）
+2.让变量始终存在内存中，不让其销毁
+3.方便调用上下文局部变量
+
+场景
+1.封装节流，要使上一次调用方法的时间戳保持在内存中
+2.setTimeout 函数通过闭包的方式实现可支持传参
+3.使外部可以访问函数内部变量
+
+
 function debounce(fn, delay) {
     let timer;
     return function () {
@@ -383,6 +402,9 @@ p.call2(c, 'zoo')
 
 
 # 手写 apply
+
+## 把fn绑在obj的对象上，fn的this就可以指向obj了
+
 Function.prototype.apply2 = function (ctx) {
     ctx.fn = this;
     let arg = [...arguments].slice(1);
