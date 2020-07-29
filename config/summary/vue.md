@@ -61,3 +61,5 @@ $set 或者 Object.assign()
 # 全局注册组件
 require.context拿到某目录下所有文件，遍历数组，根据文件名通过vue.component去批量注册到全局
 
+#
+

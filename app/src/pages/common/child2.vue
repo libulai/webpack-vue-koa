@@ -1,9 +1,6 @@
 <template>
   <div class="d-wrap">
     <div>{{child}}</div>
-    <div>
-      
-    </div>
   </div>
 </template>
 
@@ -11,10 +8,10 @@
 
 
 export default {
-  name: 'child',
+  name: 'child2',
   data() {
     return {
-      child: 'child'
+      child: 'child2'
     };
   },
   computed: {},
@@ -22,10 +19,9 @@ export default {
     
   },
   async created() {
-    console.log(this.$parent, this.$root)
-    setTimeout(()=> {
-      this.child = 'i am child'
-    },1000)
+    // setTimeout(()=> {
+    //   this.child = 'i am child2'
+    // },1000)
   }
 };
 
