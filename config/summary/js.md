@@ -28,8 +28,9 @@ js 实现 jq 方法
 3.Object.prototype.toString.call([])
 
 # 设计模式
+
 ## 观察者模式
-https://www.cnblogs.com/leaf930814/p/9014200.html
+https://www.cnblogs.com/leaf930814/p/9014200.html （观察者和发布订阅的区别）
 
 ## 发布订阅模式
 
@@ -242,7 +243,7 @@ new 和 字面量创建的对象的原型指向 Object.prototype，会继承 Obj
 a是对象，c是函数 b是c的实例 
 var a = {}
 var c = new Function()
-var b = new c() 
+var b = new c()
 
 1.__proto__隐式原型, prototype显示原型
 
@@ -259,6 +260,11 @@ var b = new c()
 7.Object.__proto__ === Function.prototype（证明对象都是通过函数来创建的）
 
 8.c.__proto__ === Function.prototype（函数也是一种对象，__proto__也指向创建其自身的函数的prototype）
+
+## 原型使用
+ 
+插件机制 
+如在jquery的原型上拓展自定义方法和属性 => $.fn.getName()
 
 # 继承
 
@@ -443,7 +449,7 @@ function _instanceof (l, r) {
 _instanceof({},Object)
 
 
-# 函数柯里化
+# 手写 函数柯里化
 function ke(fn, arg = []) {
     return function () {
         newArgs = [...arg, ...arguments]
@@ -464,7 +470,7 @@ function test(a, b, c) {
 // k(1,2,3)
 k(1)(2)(3)
 
-# Promise
+# 手写 Promise
 
 ## 简易版
 function promise2(fn) {
