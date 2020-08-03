@@ -12,7 +12,7 @@ function MVVM(options) {
     // computed 合并到data
     this._initComputed();
 
-    observe(data, this);
+    observe(data);
 
     this.$compile = new Compile(options.el || document.body, this)
 }

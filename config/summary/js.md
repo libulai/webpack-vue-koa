@@ -59,6 +59,8 @@ https://www.cnblogs.com/leaf930814/p/9014200.html （观察者和发布订阅的
 # 事件循环 event loop
 
 ## 过程
+js执行代码单线程，渲染进程是多线程
+
 主线程先执行执行栈中的同步代码，遇到异步事件时，会把异步事件（宏任务或者微任务）挂载到任务队列中（task queue），存贮异步事件的回调。等到所有的同步代码都执行完成之后，再去任务队列中查看是否任务，如果有就进入执行栈，执行异步事件的回调函数。等任务栈中的同步代码执行完毕，再去任务队列中查看并执行异步事件，反复循环。
 
 ## 异步事件
@@ -98,7 +100,7 @@ setTimeout(()=>{
 },0)
 
 解答
-<!-- 一开始执行栈的同步任务（这属于宏任务）执行完毕，会去查看是否有微任务队列，上题中存在(有且只有一个)，然后执行微任务队列中的所有任务输出 Promise1，同时会生成一个宏任务 setTimeout2
+<!-- 一开始执行栈的同步任务执行完毕，会去查看是否有微任务队列，上题中存在(有且只有一个)，然后执行微任务队列中的所有任务输出 Promise1，同时会生成一个宏任务 setTimeout2
 然后去查看宏任务队列，宏任务 setTimeout1 在 setTimeout2 之前，先执行宏任务 setTimeout1，输出 setTimeout1
 在执行宏任务 setTimeout1 时会生成微任务 Promise2 ，放入微任务队列中，接着先去清空微任务队列中的所有任务，输出 Promise2
 清空完微任务队列中的所有任务后，就又会去宏任务队列取一个，这回执行的是 setTimeout2
@@ -323,6 +325,15 @@ function debounce(fn, delay) {
         fn.apply(this, arguments)
     }, delay);
 }
+
+# 浏览器事件机制
+js中时间执行的整个过程称之为事件流，分为三个阶段：事件捕获阶段，事件目标处理函数、事件冒泡
+通常情况下，事件相应的函数四在冒泡阶段执行的。addEventListener的第三个参数默认为false，表示冒泡阶段执行（为true的时候，表示捕获阶段执行）
+
+w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true
+w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false;
+return false
+
 
 # 深拷贝
 

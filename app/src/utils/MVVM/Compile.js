@@ -3,8 +3,11 @@ function Compile(el, vm) {
     this.$el = this.isElementNode(el) ? el : document.querySelector(el);
 
     if (this.$el) {
+        // 生成虚拟dom
         this.$fragment = this.node2Fragment(this.$el);
+        // 解析模板
         this.init();
+        
         this.$el.appendChild(this.$fragment);
     }
 }

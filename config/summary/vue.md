@@ -16,10 +16,17 @@ https://juejin.im/post/5ef6d1325188252e75366ab5#heading-0
 # vue 自定义指令
 
 # vue2 实现原理
+
+## 过程
 1.利用Object.defineProperty去监听data中的数据，处理get和set
 2.把挂载vue实例dom中的所有节点生成文档片段（虚拟dom）
 3.解析模板，处理元素节点和文本节点。元素节点处理属性如v-bind，v-on之类的指令，文本节点处理{{}}模板语法
 4.把每一个订阅者watcher都放在一个队列里，当data中的属性发生变化时，通知订阅该字段的订阅者
+
+## 步骤
+1.监听数据，实现双向绑定
+2.解析模板，生成虚拟dom
+3.订阅发布模式，watcher
 
 # vue3 新特性（TS）
 
@@ -31,6 +38,26 @@ http://www.tensweets.com/article/5e032df8362e5434baf63394
 2.this.$router.push() / this.$router.go()
 3.{ path: '/a', redirect: '/b' }
 4.router.beforeEach
+
+实现
+1.hash
+根据hashchange来实现，第一次渲染页面用DOMContentLoaded
+
+window.addEventListener('hashchange', ()=>{
+    let hash = location.hash;
+    routerView.innerHTML = hash
+})
+
+2.history
+监听popState来实现，可通过history.go,back,forward来触发
+
+window.addEventListener('popstate', ()=>{
+    routerView.innerHTML = location.pathname
+})
+
+history.pushState(null, '', el.getAttribute('href'))
+
+
 
 # vuex
 state => mapState
